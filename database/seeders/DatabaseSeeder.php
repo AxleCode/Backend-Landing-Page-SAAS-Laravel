@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +20,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
+            'id' => (string) Str::uuid(),
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
@@ -31,7 +34,7 @@ class DatabaseSeeder extends Seeder
                     'components' => [
                         [
                             'type' => 'text',
-                            'content' => 'Welcome to WIT.SBY',
+                            'content' => 'Welcome to My Website',
                             'style' => [
                                 'font-size' => '2rem',
                                 'font-weight' => 'bold',
