@@ -17,8 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
             'id' => (string) Str::uuid(),
             'name' => 'Test User',
@@ -26,6 +24,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $templates = [
+            // Plain Template
             [
                 'id' => (string) Str::uuid(),
                 'name' => 'Plain Template',
@@ -78,67 +77,12 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'id' => (string) Str::uuid(),
-                'name' => 'Landing Page Hero',
-                'thumbnail_url' => null,
-                'project_data' => json_encode([
-                    'components' => [
-                        [
-                            'type' => 'section',
-                            'style' => [
-                                'background' => 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)',
-                                'color' => 'white',
-                                'padding' => '6rem 2rem',
-                                'text-align' => 'center',
-                            ],
-                            'components' => [
-                                [
-                                    'type' => 'text',
-                                    'content' => 'Build Your Website Fast',
-                                    'style' => [
-                                        'font-size' => '3rem',
-                                        'font-weight' => 'bold',
-                                        'margin-bottom' => '1rem',
-                                    ],
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'content' => 'Create stunning websites with our drag-and-drop editor',
-                                    'style' => [
-                                        'font-size' => '1.25rem',
-                                        'opacity' => '0.9',
-                                        'margin-bottom' => '2rem',
-                                    ],
-                                ],
-                                [
-                                    'type' => 'button',
-                                    'content' => 'Get Started',
-                                    'style' => [
-                                        'background' => 'white',
-                                        'color' => '#dc2626',
-                                        'padding' => '1rem 2rem',
-                                        'border-radius' => '0.5rem',
-                                        'font-weight' => 'bold',
-                                        'cursor' => 'pointer',
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                    'styles' => [
-                        'body' => [
-                            'margin' => '0',
-                            'padding' => '0',
-                            'font-family' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-                        ],
-                    ],
-                ]),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
         ];
 
         DB::table('templates')->insert($templates);
+
+        // Seed the enhanced Modern Tech Company Profile template
+        $this->call(CompanyProfileTemplateSeeder::class);
+        $this->call(CompanyProfile2TemplateSeeder::class);
     }
 }

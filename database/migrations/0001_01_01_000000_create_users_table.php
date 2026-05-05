@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('subscription_status', ['free', 'paid'])->default('free');
+            $table->enum('role', ['admin', 'creator', 'user'])->default('user');
             $table->timestamps();
         });
 

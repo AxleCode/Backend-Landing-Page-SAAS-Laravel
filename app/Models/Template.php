@@ -15,9 +15,12 @@ class Template extends Model
 
     protected $fillable = [
         'id',
+        'user_id',
         'name',
         'thumbnail_url',
         'project_data',
+        'html_content',
+        'css_content',
     ];
 
     protected $casts = [

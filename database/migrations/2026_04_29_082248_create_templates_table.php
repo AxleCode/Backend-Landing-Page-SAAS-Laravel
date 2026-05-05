@@ -13,10 +13,15 @@ return new class extends Migration
     {
        Schema::create('templates', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('user_id')->nullable()->index();
             $table->string('name');
             $table->string('thumbnail_url')->nullable();
             $table->jsonb('project_data');
+            $table->longText('html_content')->nullable();
+            $table->longText('css_content')->nullable();
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
